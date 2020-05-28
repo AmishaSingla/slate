@@ -3,137 +3,202 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+  # - ruby
+  # - python
+  # - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
+# cludes:
+#   - errorsin
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the NotificationTrapper by Decabits! Notification Trapper provides a dedicated environment to send, view and share access to emails & SMSes sent during the testing process. 
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Enjoy the functionality of this dedicated playground, which organizes all your emails and SMSes in one place. Bypass spam filters and blacklists, cut down on cumbersome SMS costs and make use of a fully encrypted and secure connection.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Emails
 
-> To authorize, use this code:
+## Create Email
 
-```ruby
+> To create **emails**, use this code:
+
+<!-- ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+``` -->
 
-```python
+<!-- ```python
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
-```
+``` -->
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST 'http://notification-trapper.test.com/api/emails' \
+--header 'Authorization: hello_world' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+  "account_id": "1",
+	"to": "test@gmail.com",
+	"from": "test@decabits.com",
+	"content": "Hello World",
+	"subject": "Hello World",
+	"cc": "test@gmail.com",
+	"bcc": "test@gmail.com",
+  "environment": "staging"
+}'
 ```
 
-```javascript
+<!-- ```javascript
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
-```
+``` -->
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `hello_world` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+NotificationTrapper uses this API key to create emails. 
+NotificationTrapper expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: hello_world`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>hello_world</code> with your personal API key.
 </aside>
 
-# Kittens
+# Text Messages/SMS
 
-## Get All Kittens
+## Create Text Message
 
-```ruby
+<!-- ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 api.kittens.get
-```
+``` -->
 
-```python
+<!-- ```python
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
 api.kittens.get()
-```
+``` -->
+
+> To create **sms**, use this code:
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST 'http://notification-trapper.test.com/api/text_message' \
+--header 'Authorization: hello_world' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+  "account_id": "1",
+	"to": "9876543212",
+	"from": "9875453631",
+	"content": "Hello World",
+	"environment": "staging"
+}'
 ```
-
+<!-- 
 ```javascript
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
 let kittens = api.kittens.get();
-```
+``` -->
+
+> Make sure to replace `hello_world` with your API key.
+
+NotificationTrapper uses this API key to create text message/sms.
+NotificationTrapper expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: hello_world`
+
+<aside class="notice">
+You must replace <code>hello_world</code> with your personal API key.
+</aside>
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+ {
+    "email": {
+        "id": 1,
+        "account_id": 1,
+        "to": "test@gmail.com",
+        "from": "test@decabits.com",
+        "content": "Hello World",
+        "subject": "Hello World",
+        "bcc": "test@gmail.com",
+        "cc": "test@gmail.com",
+        "environment": "staging"
+    }
+}
+  
 ```
 
-This endpoint retrieves all kittens.
+This endpoints create emails and text messages/sms.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST http://notification-trapper.herokuapp.com/api/emails`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Add
+--------- | ------- 
+Authorization| Your_API_Key
+Content-Type | application/json
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Status - 201 Created
 </aside>
 
-## Get a Specific Kitten
+
+> The above command returns JSON structured like this:
+
+```json
+[
+ {
+    "text_message": {
+        "id": 1,
+        "account_id": 1,
+        "to": "9876543212.0",
+        "from": "9875453631.0",
+        "content": "Hello World",
+        "environment": "staging"
+    }
+}
+  
+```
+
+### HTTP Request
+
+`POST http://notification-trapper.herokuapp.com/api/emails`
+
+### Query Parameters
+
+Parameter | Add
+--------- | ------- 
+Authorization| Your_API_Key
+Content-Type | application/json
+
+<aside class="success">
+Status- 201 Created
+</aside>
+
+<!-- ## Get a Specific Kitten
 
 ```ruby
 require 'kittn'
@@ -236,4 +301,4 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
+ -->
