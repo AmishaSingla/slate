@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   # - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 # cludes:
@@ -152,7 +152,7 @@ This endpoints create emails and text messages/sms.
 
 ### HTTP Request
 
-`POST http://notification-trapper.herokuapp.com/api/emails`
+`POST http://notification-trapper.test.com/api/emails`
 
 ### Query Parameters
 
@@ -174,8 +174,8 @@ Status - 201 Created
     "text_message": {
         "id": 1,
         "account_id": 1,
-        "to": "9876543212.0",
-        "from": "9875453631.0",
+        "to": "9876543212",
+        "from": "9875453631",
         "content": "Hello World",
         "environment": "staging"
     }
@@ -185,7 +185,7 @@ Status - 201 Created
 
 ### HTTP Request
 
-`POST http://notification-trapper.herokuapp.com/api/emails`
+`POST http://notification-trapper.test.com/api/emails`
 
 ### Query Parameters
 
