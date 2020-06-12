@@ -43,12 +43,11 @@ api = kittn.authorize('meowmeowmeow')
 ``` -->
 
 ```shell
-curl --location --request POST 'http://notification-trapper.test.com/api/emails' \
+curl --location --request POST 'http://notification-trapper.herokuapp.com/api/emails' \
 --header 'Authorization: hello_world' \
 --header 'Content-Type: application/json' \
 --header 'Content-Type: text/plain' \
 --data-raw '{
-  "account_id": "1",
 	"to": "test@gmail.com",
 	"from": "test@decabits.com",
 	"content": "Hello World",
@@ -97,12 +96,11 @@ api.kittens.get()
 > To create **sms**, use this code:
 
 ```shell
-curl --location --request POST 'http://notification-trapper.test.com/api/text_message' \
+curl --location --request POST 'http://notification-trapper.herokuapp.com/api/text_messages' \
 --header 'Authorization: hello_world' \
 --header 'Content-Type: application/json' \
 --header 'Content-Type: text/plain' \
 --data-raw '{
-  "account_id": "1",
 	"to": "9876543212",
 	"from": "9875453631",
 	"content": "Hello World",
